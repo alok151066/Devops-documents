@@ -1,0 +1,62 @@
+Linux command
+**********
+cat /etc/passwd  this is the path where all users are present
+sudo useradd alok  --to create user
+sudo passwd alok   --to create password
+d means directory
+next 9 characters represents permission
+rwx------
+first 3 characters are permission for a user for this file/directory
+next 3 characters are permission for a grp
+next 3 characters are permission for othrs
+
+to see full details
+stat /home/alok/
+
+to create group
+sudo groupadd developes-grp
+ 
+to add user to a group
+sudo usermod -aG developers-grp user1 or
+sudo gpasswd -a user1 developers-grp
+
+to see how many group does user have
+id user1
+
+to see owner name for file and all
+getfacl filename
+
+to change owner
+useradd sonar
+chown sonar:sonar filename -R
+getfacl filename
+u will see new owner sonar
+
+we can change file permission using two approaches
+1>symbolic approach
+2>numeric approach
+
+1>chmod u+rwx,G-rwx,0-rwx filename/foldername
+2>numeric 
+for read -4
+write-2
+execute-1
+
+chmod 700 filename/foldername
+user will hv all permission group and others will not have any permissions
+
+
+if someone is owner and i also want to access that file
+setfacl -m u:alok:rwx filename/foldername
+
+if ypu will add user to wheel group he will become admin user
+gpasswd -a alok wheel
+
+how many user for particular group
+cat /etc/group | grep wheel
+or
+getent group wheel
+
+how to remove user from a group
+gpasswd -d alok wheel
+
